@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+   <aop:config>
+   <aop:aspect id="logAspect" ref="aBean">
+   <aop:pointcut expression="execution(* *.*(..))" id="myPointcut"/>
+   
+   <!-- 前置通知 -->
+   <aop:before method="logStart" pointcut-ref="myPointcut"/>
+   
+   <!-- 后置通知 -->
+   <aop:after method="logEnd" pointcut-ref="myPointcut"/>
+   
+   <!-- 方法成功完成后通知 ，通知方法必须要有个参数叫rt-->
+   <aop:after-returning method="logReturn" pointcut-ref="myPointcut" returning="rt"/>
+   
+   <!-- 抛出异常后通知，通知方法必须有个参数叫 e -->
+   <aop:after-throwing method="logExeption" pointcut-ref="myPointcut" throwing="e"/>
+   
+   <!-- 环绕通知  -->
+  <!--  <aop:around method="logAround" pointcut-ref="myPointcut"/> -->
+   </aop:aspect>
+   </aop:config>
+
+   <bean id="aBean" class="com.haidong.aspect.LogAspect"></bean>
+   <bean id="calculator" class="com.haidong.impl.CalculatorImpl"/>
+</beans>
