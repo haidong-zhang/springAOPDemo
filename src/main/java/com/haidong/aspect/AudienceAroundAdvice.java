@@ -13,13 +13,13 @@ public class AudienceAroundAdvice {
 	@Around("myPointcut()")
 	public void watchPerformance(ProceedingJoinPoint jp){
 		try {
-		System.out.println("ÊÖ»ú¾²Òô");
-		System.out.println("ÕÒµ½×ùÎ»");
+		 System.out.println("ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½");
+		System.out.println("ï¿½Òµï¿½ï¿½ï¿½Î»");
 		jp.proceed();
-		System.out.println("¹ÄÕÆ£¡");
+		System.out.println("ï¿½ï¿½ï¿½Æ£ï¿½");
 		} catch (Throwable e) {
 			e.printStackTrace();
-			System.out.println("ÕâÑÝµÄÉ¶°¡£¡ÍËÆ±£¡");
+			System.out.println("ï¿½ï¿½ï¿½Ýµï¿½É¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½");
 		}
 	}
 }
